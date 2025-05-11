@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CSS Flexbox Image Cards Lab</title>
+    <style>
+        /* Reset some default browser styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            margin-bottom: 5px;
+        }
+        
+        h2 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .instructions {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background-color: #e9f7fe;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 10px;
+            color: #2980b9; }
+        
+        .instructions code {
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        /* Container for the entire card grid */
+        .cards-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            
+            /* This is the key property that makes it a flex container */
+            display: flex;
+            
+            /* This wraps items to create rows */
+            flex-wrap: wrap;
+            
+            /* This creates space between the cards */
+            gap: 20px;
+        }
+        
+        /* Individual card styling */
+        .card {
+            /* Each card takes up roughly 1/3 of container width minus gaps */
+            /* The calculation ensures 3 cards per row with equal spacing */
+            flex: 0 0 calc(33.333% - 14px);
+            
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Image container for consistent sizing */
+        .card-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+
+
+        /* Image styling to maintain aspect ratio while filling container */
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            
+            /* This is crucial for consistent image sizing */
+            object-fit: cover;
+            
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-img-container img {
+            transform: scale(1.1);
+        }
+        
+        /* Card content area */
+        .card-content {
+            padding: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .card-text {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .card-button {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background-color 0.3s ease;
+        }
+        
+        .card-button:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Code display area */
+        .code-section {
+            max-width: 1000px;
+            margin: 50px auto 20px;
+        }
+        
+        .code-container {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.4;
+        }
+        
+        .code-title {
+            background-color: #34495e;
+            padding: 10px 20px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-weight: bold;
+            margin-bottom: -20px;
+            margin-top: 30px;
+        }
+        
+        .comment {
+            color: #7f8c8d;
+        }
+        
+        .property {
+            color: #3498db;
+        }
+        
+        .value {
+            color: #2ecc71;
+        }
+        
+        .selector {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Flexbox Image Cards Lab</h1>
+    <h2>Creating a 3×3 grid with consistent image sizing</h2>
+    
+    <div class="instructions">
+        <h3>Lab Objectives:</h3>
+        <p>This lab demonstrates how to:</p>
+        <ol>
+            <li>Create a 3×3 grid of cards using CSS Flexbox</li>
+            <li>Maintain consistent image dimensions regardless of source image proportions</li>
+            <li>Implement a clean, modern card design with hover effects</li>
+        </ol>
+        <p>Key CSS properties used: <code>display: flex</code>, <code>flex-wrap: wrap</code>, <code>object-fit: cover</code></p>
+    </div>
+    
+    <!-- The Card Grid -->
+    <div class="cards-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="mountain.jpg" alt="Mountain landscape">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Mountain Vista</h3>
+                <p class="card-text">Explore breathtaking mountain views with scenic hiking trails.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="forestpath.jpg" alt="Forest path">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Forest Path</h3>
+                <p class="card-text">Discover the tranquility of ancient forests and wildlife.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="oceanWaves.webp" alt="Ocean waves">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Ocean Waves</h3>
+                <p class="card-text">Experience the calming rhythm of waves along pristine beaches.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="desertsunset.jpg" alt="Desert sunset">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Desert Sunset</h3>
+                <p class="card-text">Witness spectacular colors as the sun sets over vast desert landscapes.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="snowpeaks.jpg" alt="Snow peaks">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Snow Peaks</h3>
+                <p class="card-text">Adventure awaits in the crisp mountain air of snow-capped peaks.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="waterfall.jpg" alt="Waterfall">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Hidden Waterfall</h3>
+                <p class="card-text">Find peace at this secluded waterfall, surrounded by lush vegetation.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 7 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="autumnforst.jpg" alt="Autumn forest">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Autumn Colors</h3>
+                <p class="card-text">Walk through vibrant autumn landscapes filled with red and gold.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 8 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="canyonview.jpg" alt="Canyon view">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Canyon View</h3>
+                <p class="card-text">Marvel at the grandeur of nature's most impressive geological formations.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+        
+        <!-- Card 9 -->
+        <div class="card">
+            <div class="card-img-container">
+                <img src="tropicalisland.jpg" alt="Tropical island">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Tropical Paradise</h3>
+                <p class="card-text">Escape to crystal clear waters and palm-fringed beaches.</p>
+                <a href="#" class="card-button">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Code explanation section -->
+    <div class="code-section">
+        <h3>Key Code Segments Explained</h3>
+        
+        <div class="code-title">HTML Structure</div>
+        <div class="code-container">
+<span class="comment"><!-- Container for the entire 3×3 grid --></span>
+&lt;div class="cards-container"&gt;
+    <span class="comment"><!-- Individual card --></span>
+    &lt;div class="card"&gt;
+        <span class="comment"><!-- Image container for consistent sizing --></span>
+        &lt;div class="card-img-container"&gt;
+            &lt;img src="image-path.jpg" alt="Description"&gt;
+        &lt;/div&gt;
+        &lt;div class="card-content"&gt;
+            &lt;h3 class="card-title"&gt;Card Title&lt;/h3&gt;
+            &lt;p class="card-text"&gt;Card description text here.&lt;/p&gt;
+            &lt;a href="#" class="card-button"&gt;Learn More&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    <span class="comment"><!-- Repeat for all 9 cards --></span>
+&lt;/div&gt;</div>
+        
+        <div class="code-title">CSS for Flexbox Grid Layout</div>
+        <div class="code-container">
+<span class="comment">/* Container for the entire card grid */</span>
+<span class="selector">.cards-container</span> {
+    max-width: 1000px;
+    margin: 0 auto;
+    <span class="property">display</span>: <span class="value">flex</span>;      <span class="comment">/* Makes this a flex container */</span>
+    <span class="property">flex-wrap</span>: <span class="value">wrap</span>;    <span class="comment">/* Allows items to wrap to multiple rows */</span>
+    <span class="property">gap</span>: <span class="value">20px</span>;          <span class="comment">/* Creates spacing between cards */</span>
+}
+
+<span class="comment">/* Individual card styling */</span>
+<span class="selector">.card</span> {
+    <span class="comment">/* Each card takes up roughly 1/3 of container width minus gaps */</span>
+    <span class="property">flex</span>: <span class="value">0 0 calc(33.333% - 14px)</span>;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}</div>
+        
+        <div class="code-title">CSS for Consistent Image Sizing</div>
+        <div class="code-container">
+<span class="comment">/* Image container for consistent sizing */</span>
+<span class="selector">.card-img-container</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;     <span class="comment">/* Full width of card */</span>
+    <span class="property">height</span>: <span class="value">200px</span>;   <span class="comment">/* Fixed height for all images */</span>
+    <span class="property">overflow</span>: <span class="value">hidden</span>;  <span class="comment">/* Hide overflow if image is larger */</span>
+}
+
+<span class="comment">/* Image styling to maintain aspect ratio while filling container */</span>
+<span class="selector">.card-img-container img</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;         <span class="comment">/* Full width of container */</span>
+    <span class="property">height</span>: <span class="value">100%</span>;        <span class="comment">/* Full height of container */</span>
+    <span class="property">object-fit</span>: <span class="value">cover</span>;   <span class="comment">/* KEY PROPERTY: Makes images cover the area while maintaining aspect ratio */</span>
+}</div>
+    </div>
+    
+    <div class="instructions" style="margin-top: 40px;">
+        <h3>How This Works:</h3>
+        <ol>
+            <li>The <code>display: flex</code> and <code>flex-wrap: wrap</code> properties create a flexible grid that allows items to wrap to new rows when they run out of space.</li>
+            <li>Each card is set to take up exactly 1/3 of the container width (minus some space for gaps) with <code>flex: 0 0 calc(33.333% - 14px)</code>.</li>
+            <li>Setting a specific <code>height: 200px</code> for the image container ensures all images have the same height.</li>
+            <li>The <code>object-fit: cover</code> property is the key to making images of different dimensions display consistently - it ensures the image covers the entire container while maintaining its aspect ratio (similar to <code>background-size: cover</code>).</li>
+        </ol>
+        <p>Experiment by changing the source images to see how they always maintain the same size in the grid!</p>
+    </div>
+</body>
+</html>

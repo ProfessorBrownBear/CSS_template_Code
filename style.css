@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background-color 0.5s;
+}
+
+#quiz-container {
+    margin: 100px auto;
+    padding: 30px;
+    width: 400px;
+    border: 3px solid #000;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+}
+
+#question input {
+    width: 60px;
+    font-size: 24px;
+    text-align: center;
+    margin: 0 5px;
+}
+
+#check-answer {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#message {
+    margin-top: 15px;
+    font-size: 18px;
+    height: 30px;
+}
